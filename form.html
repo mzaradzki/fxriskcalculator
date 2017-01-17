@@ -1,0 +1,40 @@
+
+<html>
+
+  <head>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript" src="./static/jquery.js"></script>
+    <script type="text/javascript" src="./static/jqueryui/1.8.23/jquery-ui.min.js" ></script>
+    <link rel="stylesheet" type="text/css" href="./static/source/style.css">
+  </head>
+  
+  <body>
+  	<div style="left:25%; width:50%; position:absolute" >
+		<h2 align="left" style="color:#039;">Currency Portfolio Risk Exposure</h2>
+		<div>
+			<form method="post" style="align:left;">
+			  <table id="hor-minimalist-b" summary="portfolio" style="margin-left:0px;">
+				<thead>
+					<tr>
+						<th scope="col">Currency</th>
+						<th scope="col">Assets (in EUR)</th>
+						<th scope="col">Liabilities (in EUR)</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for ccy in currencies %}
+					<tr>
+					<td style="text-align:center;">{{ccy}}</td>
+					<td><input name="asset_{{ccy}}" style="color:#009; border:0px; text-align:right;" value="0"></td>
+					<td><input name="liability_{{ccy}}" style="color:#009; border:0px; text-align:right;" value="0"></td>
+					</tr>
+					{% endfor %}
+				</tbody>
+			  </table>
+			  <p align="left"><input type="submit" value="Calculate" style="border:0px; background-color:#039; color:white; font-family:Sans-Serif;	font-size:14px;"/></p>
+			</form>
+		</div>
+	</div>
+  </body>
+  
+</html>

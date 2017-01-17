@@ -1,0 +1,64 @@
+<html>
+  <head>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <link rel="stylesheet" type="text/css" href="./static/source/style.css">
+    <script type="text/javascript">
+      google.load("visualization", "1", {packages:["corechart", "table"]});
+      google.setOnLoadCallback(drawAll);
+      function drawAll(){
+      	drawChart();
+      }
+      function drawChart() {
+        
+        var data = new google.visualization.DataTable();
+		data.addColumn('number', 'PnL');
+		data.addColumn('number', '{{ label }}');
+		data.addColumn({type:'boolean',role:'emphasis'});
+		data.addColumn({type:'boolean',role:'certainty'});
+		data.addRows([
+			{% for point in points %}
+          	[{{ point.x }}, {{ point.y }}, {{ point.flagE }}, {{ point.flagC }}],
+          	{% endfor %}
+		]);
+
+        var options = {
+          title: '{{ title }}',
+          titleTextStyle: {color: '#039',},
+          legend: {position: 'out'},
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+        chart.draw(data, options);
+        
+      }
+      
+    </script>
+  </head>
+  <body>
+    <div id="chart_div" style="top:5%; left:20%; width:700px; height:400px; position:relative;"></div>
+    <div id="table_div" style="left:20%; position:relative;">
+		<table id="hor-minimalist-b" summary="risk" style="width:700px; left:0%; left-margin:0px;">
+			<thead>
+				<tr>
+					<th scope="col">Currency</th>
+					<th scope="col">Assets (in EUR)</th>
+					<th scope="col">Liabilities (in EUR)</th>
+					<th scope="col">Net (in EUR)</th>
+					<th scope="col">Risk Contribution (in EUR)</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for row in table %}
+				<tr>
+				<td style="text-align:center;">{{row.0}}</td>
+				<td>{{row.1}}</td>
+				<td>{{row.2}}</td>
+				<td>{{row.3}}</td>			
+				<td>{{row.4}}</td>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+  </body>
+</html>
