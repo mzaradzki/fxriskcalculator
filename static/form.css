@@ -1,0 +1,39 @@
+
+
+body {
+	color: black;
+	background-color: white;
+}
+
+fieldset {
+	width: 50%;
+	margin: 1em 0;
+	padding: 1em;
+	border: 1px solid #ccc;
+	background: #f8f8f8;
+}
+
+form {
+	width: 50%;
+	margin: 1em 0;
+	padding: 1em;
+	border: 1px solid #ccc;
+	background: #f8f8f8;
+}
+
+legend {
+	font-weight: bold;
+}
+
+label {
+	display: block;
+	cursor: pointer;
+}
+
+input[type="text"] {
+	width: 20em;
+}
+
+input[type="button"] {
+	width: 15%;
+}
